@@ -1137,9 +1137,8 @@ mod tests {
     #[test]
     fn identical_openings_in_different_scopes_get_different_identities() {
         let tracker = PrefixTracker::new(Duration::ZERO);
-        let identify = |scope: &[&str]| {
-            tracker.identify(&identity_chain_in_scope(&["same opening"], scope))
-        };
+        let identify =
+            |scope: &[&str]| tracker.identify(&identity_chain_in_scope(&["same opening"], scope));
 
         let base = identify(&["tenant-a", "openai", "gpt-5"]);
         assert_eq!(identify(&["tenant-a", "openai", "gpt-5"]), base);
